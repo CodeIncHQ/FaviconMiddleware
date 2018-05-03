@@ -34,5 +34,24 @@ use CodeInc\Psr7Responses\FileResponse;
  */
 class FaviconResponse extends FileResponse
 {
-
+    /**
+     * FaviconResponse constructor.
+     *
+     * @param string $filePath
+     * @param null|string $fileName
+     * @param null|string $mimeType
+     * @param bool $asAttachment
+     * @param int $status
+     * @param array $headers
+     * @param string $version
+     * @param null|string $reason
+     * @throws \CodeInc\MediaTypes\Exceptions\MediaTypesException
+     * @throws \CodeInc\Psr7Responses\ResponseException
+     */
+    public function __construct(string $filePath, ?string $fileName = null, ?string $mimeType = null,
+        bool $asAttachment = false, int $status = 200, array $headers = [], string $version = '1.1',
+        ?string $reason = null)
+    {
+        parent::__construct($filePath, $fileName, $mimeType, $asAttachment, $status, $headers, $version, $reason);
+    }
 }
