@@ -1,6 +1,6 @@
 {
   "name": "codeinc/favicon-middleware",
-  "version": "1.0.0-beta.2",
+  "version": "1.0.0",
   "description": "A collection a PSR-15 middlewares",
   "homepage": "https://github.com/CodeIncHQ/FaviconMiddleware",
   "type": "library",
