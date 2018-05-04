@@ -45,10 +45,10 @@ final class FaviconProxyMiddlewareTest extends TestCase
      */
     public function testMiddleware():void
     {
-        $middleware = new FaviconProxyMiddleware(self::REMOTE_FAVICON);
+        $faviconProxyMiddleware = new FaviconProxyMiddleware(self::REMOTE_FAVICON);
 
-        $response = $middleware->process(
-            FakeServerRequest::getUnsecureServerRequestWithPath('/favicon.ico'),
+        $response = $faviconProxyMiddleware->process(
+            FakeServerRequest::getUnsecureServerRequestWithPath(FaviconProxyMiddleware::DEFAULT_URI_PATH),
             new FakeRequestHandler()
         );
 
@@ -69,8 +69,8 @@ final class FaviconProxyMiddlewareTest extends TestCase
      */
     public function testNotFaviconRequest():void
     {
-        $middleware = new FaviconProxyMiddleware(self::REMOTE_FAVICON);
-        $response = $middleware->process(
+        $faviconProxyMiddleware = new FaviconProxyMiddleware(self::REMOTE_FAVICON);
+        $response = $faviconProxyMiddleware->process(
             FakeServerRequest::getUnsecureServerRequestWithPath('/page1.html'),
             new FakeRequestHandler()
         );

@@ -47,10 +47,12 @@ class FaviconProxyMiddleware extends AbstractFaviconMiddleware
      * FaviconProxyMiddleware constructor.
      *
      * @param string $remoteFaviconUrl
+     * @param string $uriPath
      * @throws FaviconMiddlewareException
      */
-    public function __construct(string $remoteFaviconUrl)
+    public function __construct(string $remoteFaviconUrl, string $uriPath = self::DEFAULT_URI_PATH)
     {
+        parent::__construct($uriPath);
         $this->setRemoteFaviconUrl($remoteFaviconUrl);
     }
 
