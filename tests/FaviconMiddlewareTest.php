@@ -49,9 +49,9 @@ final class FaviconMiddlewareTest extends TestCase
         self::assertFileExists(self::LOCAL_FAVICON);
         self::assertFileIsReadable(self::LOCAL_FAVICON);
 
-        $middleware = new FaviconMiddleware(self::LOCAL_FAVICON);
-        $response = $middleware->process(
-            FakeServerRequest::getUnsecureServerRequestWithPath('/favicon.ico'),
+        $faviconMiddleware = new FaviconMiddleware(self::LOCAL_FAVICON);
+        $response = $faviconMiddleware->process(
+            FakeServerRequest::getUnsecureServerRequestWithPath(FaviconMiddleware::DEFAULT_URI_PATH),
             new FakeRequestHandler()
         );
 
@@ -70,8 +70,8 @@ final class FaviconMiddlewareTest extends TestCase
         self::assertFileExists(self::LOCAL_FAVICON);
         self::assertFileIsReadable(self::LOCAL_FAVICON);
 
-        $middleware = new FaviconMiddleware(self::LOCAL_FAVICON);
-        $response = $middleware->process(
+        $faviconMiddleware = new FaviconMiddleware(self::LOCAL_FAVICON);
+        $response = $faviconMiddleware->process(
             FakeServerRequest::getUnsecureServerRequestWithPath('/page1.html'),
             new FakeRequestHandler()
         );
@@ -90,12 +90,22 @@ final class FaviconMiddlewareTest extends TestCase
     }
 
     /**
+     * @throws FaviconMiddlewareException
+     */
+    public function testHtmlMetaTag():void
+    {
+        $faviconMiddleware = new FaviconMiddleware(self::LOCAL_FAVICON);
+        self::assertEquals($faviconMiddleware->getHtmlMetaTag(),
+            '<link rel="shortcut icon" href="/favicon.ico">');
+    }
+
+    /**
      * @expectedException \CodeInc\FaviconMiddleware\FaviconMiddlewareException
      * @throws FaviconMiddlewareException
      */
     public function testMethodFilePathError():void
     {
-        $middleware = new FaviconMiddleware(self::LOCAL_FAVICON);
-        $middleware->setFaviconFilePath('/a/fake/favicon.ico');
+        $faviconMiddleware = new FaviconMiddleware(self::LOCAL_FAVICON);
+        $faviconMiddleware->setFaviconFilePath('/a/fake/favicon.ico');
     }
 }

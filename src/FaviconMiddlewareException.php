@@ -42,10 +42,10 @@ class FaviconMiddlewareException extends \Exception
     /**
      * FaviconMiddlewareException constructor.
      *
-     * @param string $message
+     * @param string                    $message
      * @param AbstractFaviconMiddleware $faviconMiddleware
-     * @param int $code
-     * @param Throwable|null $previous
+     * @param int                       $code
+     * @param Throwable|null            $previous
      */
     public function __construct(string $message, AbstractFaviconMiddleware $faviconMiddleware,
         int $code = 0, Throwable $previous = null)

@@ -39,24 +39,31 @@ use Psr\Http\Server\RequestHandlerInterface;
  */
 abstract class AbstractFaviconMiddleware implements MiddlewareInterface
 {
-    /**
-     * @var array
-     */
-    protected $faviconUriPaths = ['/favicon.ico'];
+    public const DEFAULT_URI_PATH = '/favicon.ico';
 
     /**
-     * Adds a path for whitch one the middleware will send the favicon.
+     * @var string
+     */
+    protected $uriPath;
+
+    /**
+     * AbstractFaviconMiddleware constructor.
      *
      * @param string $uriPath
-     * @return bool
      */
-    public function addFaviconUriPath(string $uriPath):bool
+    public function __construct(string $uriPath = self::DEFAULT_URI_PATH)
     {
-        if (!in_array($uriPath, $this->faviconUriPaths)) {
-            $this->faviconUriPaths[] = $uriPath;
-            return true;
-        }
-        return false;
+        $this->uriPath = $uriPath;
+    }
+
+    /**
+     * Returns the favicon URI path.
+     *
+     * @return string
+     */
+    public function getUriPath():string
+    {
+        return $this->uriPath;
     }
 
     /**
@@ -92,6 +99,16 @@ abstract class AbstractFaviconMiddleware implements MiddlewareInterface
      */
     public function isFaviconRequest(ServerRequestInterface $request):bool
     {
-        return in_array($request->getUri()->getPath(), $this->faviconUriPaths);
+        return $request->getUri()->getPath() == $this->uriPath;
+    }
+
+    /**
+     * Returns the HTML meta tag.
+     *
+     * @return string
+     */
+    public function getHtmlMetaTag():string
+    {
+        return '<link rel="shortcut icon" href="'.htmlspecialchars($this->uriPath).'">';
     }
 }

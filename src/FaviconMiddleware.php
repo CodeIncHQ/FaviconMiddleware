@@ -46,11 +46,13 @@ class FaviconMiddleware extends AbstractFaviconMiddleware
     /**
      * FaviconMiddleware constructor.
      *
-     * @param string $faviconFilePath
+     * @param string      $faviconFilePath
+     * @param string $uriPath
      * @throws FaviconMiddlewareException
      */
-    public function __construct(string $faviconFilePath)
+    public function __construct(string $faviconFilePath, string $uriPath = self::DEFAULT_URI_PATH)
     {
+        parent::__construct($uriPath);
         $this->setFaviconFilePath($faviconFilePath);
     }
 
