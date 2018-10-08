@@ -1,4 +1,4 @@
-# Robots.txt PSR-15 middleware 
+# Favicon PSR-15 middleware 
 
 This PHP 7.1 library is a [PSR-15](https://www.php-fig.org/psr/psr-15/) middleware didecated to answers `/favicon.ico` requests. Two middleware classes are included: 
 * [`FaviconMiddleware`](src/FaviconMiddleware.php) anwsers sending a local favicon file
