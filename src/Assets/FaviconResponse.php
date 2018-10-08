@@ -21,7 +21,7 @@
 //
 declare(strict_types=1);
 namespace CodeInc\FaviconMiddleware\Assets;
-use CodeInc\Psr7Responses\FileResponse;
+use CodeInc\Psr7Responses\LocalFileResponse;
 
 
 /**
@@ -32,24 +32,27 @@ use CodeInc\Psr7Responses\FileResponse;
  * @link https://github.com/CodeIncHQ/FaviconMiddleware
  * @license MIT <https://github.com/CodeIncHQ/FaviconMiddleware/blob/master/LICENSE>
  */
-class FaviconResponse extends FileResponse
+class FaviconResponse extends LocalFileResponse
 {
     /**
      * FaviconResponse constructor.
      *
-     * @param $file
-     * @param string $fileName
+     * @param string $filePath
      * @param int $code
      * @param string $reasonPhrase
+     * @param string $fileName
      * @param null|string $contentType
+     * @param int|null $contentLength
      * @param bool $asAttachment
      * @param array $headers
      * @param string $version
      * @throws \CodeInc\MediaTypes\Exceptions\MediaTypesException
      */
-    public function __construct($file, string $fileName = 'favicon.ico', int $code = 200, string $reasonPhrase = '',
-        ?string $contentType = null, bool $asAttachment = true, array $headers = [], string $version = '1.1')
+    public function __construct(string $filePath, int $code = 200, string $reasonPhrase = '',
+        string $fileName = 'favicon.ico', ?string $contentType = null, ?int $contentLength = null,
+        bool $asAttachment = true, array $headers = [], string $version = '1.1')
     {
-        parent::__construct($file, $fileName, $code, $reasonPhrase, $contentType, $asAttachment, $headers, $version);
+        parent::__construct($filePath, $code, $reasonPhrase, $fileName, $contentType, $contentLength, $asAttachment,
+            $headers, $version);
     }
 }
