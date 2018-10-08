@@ -86,6 +86,7 @@ class FaviconProxyMiddleware extends AbstractFaviconMiddleware
      * @param ServerRequestInterface $request
      * @return ResponseInterface
      * @throws \CodeInc\Psr7Responses\ResponseException
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     protected function getFavicon(ServerRequestInterface $request):ResponseInterface
     {

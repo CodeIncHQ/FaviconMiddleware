@@ -37,21 +37,19 @@ class FaviconResponse extends FileResponse
     /**
      * FaviconResponse constructor.
      *
-     * @param string      $filePath
-     * @param null|string $fileName
-     * @param null|string $mimeType
-     * @param bool        $asAttachment
-     * @param int         $status
-     * @param array       $headers
-     * @param string      $version
-     * @param null|string $reason
+     * @param $file
+     * @param string $fileName
+     * @param int $code
+     * @param string $reasonPhrase
+     * @param null|string $contentType
+     * @param bool $asAttachment
+     * @param array $headers
+     * @param string $version
      * @throws \CodeInc\MediaTypes\Exceptions\MediaTypesException
-     * @throws \CodeInc\Psr7Responses\ResponseException
      */
-    public function __construct(string $filePath, ?string $fileName = null, ?string $mimeType = null,
-        bool $asAttachment = false, int $status = 200, array $headers = [], string $version = '1.1',
-        ?string $reason = null)
+    public function __construct($file, string $fileName = 'favicon.ico', int $code = 200, string $reasonPhrase = '',
+        ?string $contentType = null, bool $asAttachment = true, array $headers = [], string $version = '1.1')
     {
-        parent::__construct($filePath, $fileName, $mimeType, $asAttachment, $status, $headers, $version, $reason);
+        parent::__construct($file, $fileName, $code, $reasonPhrase, $contentType, $asAttachment, $headers, $version);
     }
 }
